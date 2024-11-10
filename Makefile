@@ -4,7 +4,13 @@ LIBS     = $(shell ./libconcurrent/libdeps.sh)
 CLANG_AR = ar
 DIR      = /opt
 
+BINDIR     = build/bin
+LIBDIR     = build/lib
+DOCSDIR    = build/docs
+OBJDIR     = build/objects
+
 all:
+	mkdir -p $(BINDIR) $(LIBDIR) $(DOCSDIR) $(OBJDIR)
 	make $(ARCH)
 
 debug:
