@@ -26,7 +26,7 @@
 /// Note that the validation.sh script enables this definition by default. In some cases, this may introduces
 /// some performance loses. Thus, in case you want to perform benchmarking keeps this undefined.
 /// By default, this flag is disabled.
-//#define DEBUG
+#define DEBUG
 
 /// @brief This definition disables backoff in all algorithms that are using it for reducing system's contention.
 /// By default, this flag is disabled.
