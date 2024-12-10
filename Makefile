@@ -9,9 +9,12 @@ LIBDIR     = build/lib
 DOCSDIR    = build/docs
 OBJDIR     = build/objects
 
+# Default build type
+BUILD_TYPE ?= INT64_T_OBJECT
+
 all:
 	mkdir -p $(BINDIR) $(LIBDIR) $(DOCSDIR) $(OBJDIR)
-	make $(ARCH)
+	make $(ARCH) D_ARGS="-D$(BUILD_TYPE)"
 
 debug:
 	make $(ARCH) D_ARGS="-DDEBUG"

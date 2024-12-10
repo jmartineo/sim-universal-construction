@@ -17,15 +17,29 @@ LIBDIR     = build/lib
 DOCSDIR    = build/docs
 OBJDIR     = build/objects
 
+BUILD_TYPE ?= INT64_T_OBJECT
+
+ifeq ($(BUILD_TYPE), VOID_PTR_OBJECT)
+    SUFFIX = void_ptr
+    D_ARGS += -DRETVAL_TYPE="void*"
+else ifeq ($(BUILD_TYPE), INT64_T_OBJECT)
+    SUFFIX = int64_t
+    D_ARGS += -DRETVAL_TYPE="int64_t"
+else
+    $(error Unknown BUILD_TYPE: $(BUILD_TYPE))
+endif
+
 LIBNAME    = libconcurrent.a
-LIBNAMESO  = libconcurrent.so
+LIBNAMESO  = libconcurrent_$(SUFFIX).so
 
 BUILD_LOG=./build.log
 
 # define the C source files
 PRIMITIVES = $(wildcard libconcurrent/primitives/*.c)
-CONCURRENT = $(wildcard libconcurrent/concurrent/*.c)
-BENCHMARKS = $(wildcard benchmarks/*bench.c)
+ALL_CONCURRENT = $(wildcard libconcurrent/concurrent/*.c)
+CONCURRENT = $(wildcard libconcurrent/concurrent/sim*.c) libconcurrent/concurrent/msqueue.c libconcurrent/concurrent/lcrq.c libconcurrent/concurrent/lfstack.c
+ALL_BENCHMARKS = $(wildcard benchmarks/*bench.c)
+BENCHMARKS = $(wildcard benchmarks/sim*bench.c) benchmarks/msqueuebench.c benchmarks/lcrqbench.c benchmarks/lfstackbench.c
 SRCS       = $(PRIMITIVES) $(CONCURRENT) 
 
 # define the C object files 

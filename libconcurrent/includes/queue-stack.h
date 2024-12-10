@@ -15,6 +15,7 @@ typedef struct Node {
     volatile struct Node *next;
 } Node;
 
+#ifdef INT64_T_OBJECT
 #define GUARD_VALUE     LONG_MIN
 #define EMPTY_QUEUE     (GUARD_VALUE + 1)
 #define EMPTY_STACK     (GUARD_VALUE + 1)
@@ -22,5 +23,16 @@ typedef struct Node {
 #define ENQUEUE_FAIL    -1
 #define PUSH_SUCCESS    0
 #define PUSH_FAIL       -1
+
+#elif defined(VOID_PTR_OBJECT)
+#define GUARD_VALUE     ((void*)0xdeadbeef)
+#define EMPTY_QUEUE     ((void*)0xdeadbeef + 1)
+#define EMPTY_STACK     ((void*)0xdeadbeef + 1)
+#define ENQUEUE_SUCCESS 0
+#define ENQUEUE_FAIL    -1
+#define PUSH_SUCCESS    0
+#define PUSH_FAIL       -1
+#endif
+
 
 #endif

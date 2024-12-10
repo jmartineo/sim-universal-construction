@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 /// @brief BenchArgs stores the values of the command-line arguments used by the benchmarks provided by the Synch framework.
-/// BenchArgs should be initialized using the parseArguments function. For the default values, see the config.h file.
+/// BenchArgs should be initialized using the parseArguments function. For the default values, see the config_int64_t.h file.
 typedef struct SynchBenchArgs {
     /// @brief The number of the executed operations per thread. Notice that benchmarks for stacks and queues
     /// execute runs pairs of operations (i.e. pairs of push/pops or pairs of enqueues/dequeues).
