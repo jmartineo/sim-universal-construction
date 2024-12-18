@@ -6,7 +6,7 @@
 
 #ifdef VOID_PTR_OBJECT
 #include "config_void_ptr.h"
-#elifdef INT64_T_OBJECT
+#elif defined(INT64_T_OBJECT)
 #include "config_int64_t.h"
 #else
 #error "No object type defined"

@@ -9,6 +9,7 @@
 #define _QUEUE_STACK_H_
 
 #include <limits.h>
+#include <system.h>
 
 typedef struct Node {
     Object val;

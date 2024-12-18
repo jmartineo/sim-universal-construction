@@ -21,10 +21,8 @@ BUILD_TYPE ?= INT64_T_OBJECT
 
 ifeq ($(BUILD_TYPE), VOID_PTR_OBJECT)
     SUFFIX = void_ptr
-    D_ARGS += -DRETVAL_TYPE="void*"
 else ifeq ($(BUILD_TYPE), INT64_T_OBJECT)
     SUFFIX = int64_t
-    D_ARGS += -DRETVAL_TYPE="int64_t"
 else
     $(error Unknown BUILD_TYPE: $(BUILD_TYPE))
 endif
