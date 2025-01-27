@@ -17,7 +17,7 @@ LIBDIR     = build/lib
 DOCSDIR    = build/docs
 OBJDIR     = build/objects
 
-BUILD_TYPE ?= INT64_T_OBJECT
+BUILD_TYPE ?= VOID_PTR_OBJECT
 
 ifeq ($(BUILD_TYPE), VOID_PTR_OBJECT)
     SUFFIX = void_ptr

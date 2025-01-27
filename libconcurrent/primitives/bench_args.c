@@ -20,6 +20,8 @@ static void printHelp(const char *exec_name) {
             "-w,  --max_work   \t set the amount of workload (i.e. dummy loop iterations among two consecutive operations of the benchmarked object), default is 64\n"
             "-b,  --backoff, --backoff_high \t set an upper backoff bound\n"
             "-l,  --backoff_low\t set a lower backoff bound\n"
+            "-I,  --insert_ratio\t set the insert ratio\n"
+            "-R,  --remove_ratio\t set the remove ratio\n"
             "\n"
             "-h, --help        \t displays this help and exits\n",
             exec_name);
@@ -36,6 +38,8 @@ void synchParseArguments(SynchBenchArgs *bench_args, int argc, char *argv[]) {
              {"backoff_low", required_argument, 0, 'l'},
              {"backoff_high", required_argument, 0, 'b'},
              {"numa_nodes", required_argument, 0, 'n'},
+             {"insert ratio", required_argument, 50, 'I'},
+             {"remove ratio", required_argument, 50, 'R'},
              {"help", no_argument, 0, 'h'},
              {0, 0, 0, 0}};
 
@@ -47,6 +51,8 @@ void synchParseArguments(SynchBenchArgs *bench_args, int argc, char *argv[]) {
     bench_args->backoff_high = 0;
     bench_args->backoff_low = 0;
     bench_args->numa_nodes = HSYNCH_DEFAULT_NUMA_POLICY;
+    bench_args->insert_ratio = 50;
+    bench_args->remove_ratio = 50;
 
     while ((opt = getopt_long(argc, argv, "t:f:r:w:b:l:n:h", long_options, &long_index)) != -1) {
         switch (opt) {
@@ -70,6 +76,12 @@ void synchParseArguments(SynchBenchArgs *bench_args, int argc, char *argv[]) {
             break;
         case 'n':
             bench_args->numa_nodes = atoi(optarg);
+            break;
+        case 'I':
+            bench_args->insert_ratio = atoi(optarg);
+            break;
+        case 'R':
+            bench_args->remove_ratio = atoi(optarg);
             break;
         case 'h':
             printHelp(argv[0]);

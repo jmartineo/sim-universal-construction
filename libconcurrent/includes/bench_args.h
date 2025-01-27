@@ -32,6 +32,10 @@ typedef struct SynchBenchArgs {
     uint16_t backoff_low;
     /// @brief The upper backoff bound used in the experiment.
     uint16_t backoff_high;
+    // @brief The insert ratio used in the experiment.
+    int insert_ratio;
+    // @brief The remove ratio used in the experiment.
+    int remove_ratio;
 } SynchBenchArgs;
 
 /// @brief This function parses the command-line arguments and stores them in an BenchArgs structure.

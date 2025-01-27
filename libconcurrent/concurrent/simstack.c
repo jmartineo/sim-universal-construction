@@ -11,7 +11,11 @@
 #include <threadtools.h>
 #include <simstack.h>
 
+#ifdef INT64_T_OBJECT
 static const uint64_t POP = LLONG_MIN;
+#else
+static const intptr_t POP = INTPTR_MIN;
+#endif
 
 inline static void serialPush(HalfSimStackState *st, SimStackThreadState *th_state, ArgVal arg);
 inline static bool serialPop(HalfSimStackState *st, int pid);
